@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Oct 11, 2024 at 07:05 PM
+-- Generation Time: Oct 12, 2024 at 03:35 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -35,6 +35,14 @@ CREATE TABLE `activity_logs` (
   `activity_time` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `activity_logs`
+--
+
+INSERT INTO `activity_logs` (`id`, `user_id`, `activity_type`, `activity_description`, `activity_time`) VALUES
+(1, 1, 'Login', 'User logged in', '2024-10-12 13:03:44'),
+(2, 1, 'Course Enrollment', 'Enrolled in Web Development', '2024-10-12 13:03:44');
+
 -- --------------------------------------------------------
 
 --
@@ -48,6 +56,14 @@ CREATE TABLE `courses` (
   `instructor_id` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `courses`
+--
+
+INSERT INTO `courses` (`id`, `course_name`, `course_description`, `instructor_id`, `created_at`) VALUES
+(1, 'Web Development', 'Learn how to build modern websites', 2, '2024-10-12 13:03:29'),
+(2, 'Data Structures', 'Understanding data structures in computer science', 2, '2024-10-12 13:03:29');
 
 -- --------------------------------------------------------
 
@@ -63,6 +79,15 @@ CREATE TABLE `course_enrollments` (
   `progress` decimal(5,2) DEFAULT 0.00
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `course_enrollments`
+--
+
+INSERT INTO `course_enrollments` (`id`, `user_id`, `course_id`, `enrollment_date`, `progress`) VALUES
+(1, 1, 1, '2024-10-12 13:03:37', 75.00),
+(2, 1, 2, '2024-10-12 13:03:37', 40.00),
+(3, NULL, 1, '2024-10-12 13:30:37', 0.00);
+
 -- --------------------------------------------------------
 
 --
@@ -77,6 +102,14 @@ CREATE TABLE `support_messages` (
   `submitted_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `status` enum('pending','resolved') DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `support_messages`
+--
+
+INSERT INTO `support_messages` (`id`, `user_id`, `subject`, `message`, `submitted_at`, `status`) VALUES
+(1, 1, 'Login Issue', 'I am facing issues logging into my account', '2024-10-12 13:03:49', 'pending'),
+(2, 2, 'Course Issue', 'I cannot access the course materials', '2024-10-12 13:03:49', 'resolved');
 
 -- --------------------------------------------------------
 
@@ -99,8 +132,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `fullname`, `role`, `created_at`) VALUES
-(1, 'noelianyt', '*D7A36145DD473A2C53195CC7DC22C43CE8E21F69', '', '', 'student', '2024-10-11 16:51:19'),
-(2, 'robaz17', '$2y$10$jMXF7GdL2AzlW9uxo0Ykc.JHA4sdZJWv.cLxeM7s6vWJig2gJZDJK', '', '', 'student', '2024-10-11 16:51:19');
+(1, 'noelianyt', 'd3s3mb3r26', 'immanuelfgs@gmail.com', 'Francisco Gilbert Sondakh', 'student', '2024-10-12 13:03:24'),
+(2, 'robaz17', 'hbdke20thn', 'robaz1709@gmail.com', 'Robby Azwan Saputra', 'student', '2024-10-12 13:03:24'),
+(4, 'robbyatswan17', '$2y$10$ps0hVzaLoiUd6t9yTyNn3OG6kCHI3hH6Z51ZJwqLyEnecgt8VXDs.', 'robbyazwan@gmail.com', 'Robby Azwan Saputra', '', '2024-10-12 08:27:05');
 
 --
 -- Indexes for dumped tables
@@ -150,31 +184,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `activity_logs`
 --
 ALTER TABLE `activity_logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `course_enrollments`
 --
 ALTER TABLE `course_enrollments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `support_messages`
 --
 ALTER TABLE `support_messages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables

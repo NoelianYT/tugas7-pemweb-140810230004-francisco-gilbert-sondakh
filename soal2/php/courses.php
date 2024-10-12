@@ -5,10 +5,18 @@ if (!isset($_SESSION['username'])) {
     exit();
 }
 
-require 'config.php';
+$host = 'localhost';
+$db   = 'latihan';
+$user = 'root';
+$pass = 'Jkth1l4ng@D26';
+$mysqli = new mysqli($host, $user, $pass, $db, 3307);
+
+if ($mysqli->connect_error) {
+    die("Connection failed: " . $mysqli->connect_error);
+}
 
 $query = "SELECT * FROM courses";
-$result = $conn->query($query);
+$result = $mysqli->query($query);
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +25,7 @@ $result = $conn->query($query);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kursus | Mari Belajar di EducAchieve</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/courses.css">
 </head>
 <body>
     <h2>Available Courses</h2>
